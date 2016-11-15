@@ -1,0 +1,5 @@
+To install take the following steps:
+
+Copy all the files that start with 'cg' to a directory that your web server can serve up.
+
+To launch, the application landing page is 'cgKey.php'.
