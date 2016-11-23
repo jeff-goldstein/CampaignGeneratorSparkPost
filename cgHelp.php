@@ -41,7 +41,7 @@ table {
 </ul>
 <br><br>
 <center>
-<h1>Campaign Generator Help</h1>
+<h1>Campaign Generator Help<h3>Email For All - Text Messaging Supported for Enterprise Accounts</h3></h1>
 </center>
 <br><br>
 <h2>&nbsp;&nbsp;&nbsp;Appendix</h2>
@@ -52,6 +52,7 @@ table {
 <li><a href="#CSVJSON">Creating Campaigns with Recipient Data entered via CSV or JSON</a></li>
 <li><a href="#Commit">Reviewing and Sending the Campaign</a></li>
 <li><a href="#Scheduled">Cancelling Scheduled Campaigns</a></li>
+<li><a href="#SMS">How to Send Text Messages (Enterprise Accounts Only)</a></li>
 </ul>
 
 <table border="0" width="90%" cellpadding="30">
@@ -258,6 +259,16 @@ The numeric indexed products can then be used in a myriad number of ways. One ex
 <p><em>**Warning** Campaigns that are targeted to kick off within 10 minutes can not be cancelled at this time due to SparkPost rules. There is nothing in this codebase that stops it, so if that rule changes some day, this application will work appropriately. If you try to cancel a campaign and it keeps showing up in the list, it is probably due to this rule!</em></p>
 </td>
 <td valign="top"><a href="https://dl.dropboxusercontent.com/u/4387255/cgScreenSnapshots/cgScheduled.png" target="_blank"><img src="https://dl.dropboxusercontent.com/u/4387255/cgScreenSnapshots/cgScheduled.png" alt="" width="800" /></a></td>
+</tr>
+<tr>
+<td colspan="2" valign="top">
+<h4><a id="SMS" name="Scheduled"></a>How to Send Text Messages (Enterprise Accounts Only)</h4>
+<strong>Sending SMS</strong> is actually very similar to sending an email <strong>as-long-as</strong> you have your Enterprise account configured to send messages to your aggregator(s).  There are only two differences between sending an email and sending a text message.  The first difference is that you must have a 'text' portion for your template.  SMS will use the 'text' message, NOT the 'hmtl' message of your template; but rest assured you can still use substitution just like in an email.  Second, the address will be in the form of &ltphone number&gt@&ltsparkpost aggregator id&gt.  When an Enterprise system is configured with an aggregator, your Technical Account Manager will give you the aggregator id to use in the address.
+ For example, if you request to have mGage set up as an aggregator in your account, your aggregator id might be "mgage.company".  This would mean, to send a message to (213) 555-1212 the recipient address would be 2135551212@mgage.company!  SparkPost will translate the mgage.company to the appropriate aggregator for your account and send the message.
+<p>To further drill down, let's use an example use case where Sloppy Pig BBQ in Chicken, Alaska, wants to tell all of their customers of their new holiday late night hours. The stored template might have a nice fancy html layout, but in the 'text' section would simply have the following message, "Sloppy Pig BBQ will be open until 2am every Th-Sat to support your shopping hunger pains until Jan 8th".  Now all you need is to change each recipient address from an email address to something like 12135551212@mgage.sloppypig.  From there, SparkPost will do the rest.</p>
+<p>The Campaign Generator will work with either stored recipients or via the CSV/JSON entry page, just make sure you point to the right template and use the right addresses.</p>
+<p><em>As a reminder, SMS messages are only 160 characters, so if you message is longer, your aggregator will probably break each 160 characters into an individual message (page) and charge you for each page, so don't go to wild.</em></p>
+</td>
 </tr>
 </tbody>
 </table>
