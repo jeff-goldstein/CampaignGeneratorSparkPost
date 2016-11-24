@@ -36,6 +36,25 @@ $( function()
 {
     $( "#datepicker" ).datepicker( { dateFormat: 'yy-mm-dd' });
 } );
+
+function cleanup() 
+{
+// Need to clean up this field in case they did a backpage in the browser
+// 
+    var returnpath = document.getElementById("returnpath");
+    var location = returnpath.value.search("@");
+	if (location > 0) {returnpath.value = returnpath.value.substring(0, location)};
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-86406300-1', 'auto');
+  ga('send', 'pageview');
+
 </script>
 <style>
     /* This expands the text for more room while typing */
@@ -82,7 +101,7 @@ $( function()
    
 </head>
 
-<body id="bkgnd">
+<body id="bkgnd" onload="cleanup()">
 <?php
 	ini_set('post_max_size', '200000');
     $hash = $_GET["apikey"];
@@ -106,7 +125,7 @@ $( function()
 </ul>
 
 <script type="text/javascript">
-
+ 
 function recipientcount() 
 {
     var recipientCount = document.getElementById("recipientCount");
@@ -386,6 +405,14 @@ function resetsummary()
                     ?>
                     <h3>Campaign Name:*</h3><input id="campaign" name="campaign" required="" type="text" placeholder="Please Enter a Campaign Name"><br>
                     <br>
+                	<h3>Global Return Path (Required for Elite/Enterprise SparkPost Users):*</h3>
+                	<input id="returnpath" name="returnpath" type="text">@
+                	<select id="domain" name="domain">
+                	<?php
+                    	buildDomainList ($apikey, $apiroot);
+                	?>
+                	</select>
+                	<br><br>
                     <input checked id="open" name="open" type="checkbox" value="T"> Turn on Open Tracking<br>
                     <input checked id="click" name="click" type="checkbox" value="T"> Turn on Click Tracking<br>
                     <h3>Optional Items (leave blank if you don't want to use them)...</h3>
