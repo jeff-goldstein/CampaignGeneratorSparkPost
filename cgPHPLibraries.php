@@ -112,7 +112,7 @@ function buildTemplateList ($key, $apiroot)
     	{
         	foreach ($value2 as $key3 => $value3) 
         	{
-            	if ($key3 == "id") echo '<option value="' . $value3 . '">' . $value3 . '</option>';
+            	if ($key3 == "id") echo '<option value="' . $value3 . '">' . $value2["name"] . '</option>';
         	}
     	}
     }
